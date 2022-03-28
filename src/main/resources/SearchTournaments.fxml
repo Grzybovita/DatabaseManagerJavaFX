@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="searchTournamentsPane" minHeight="0.0" minWidth="0.0" prefHeight="551.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SearchTournamentsController">
+   <children>
+      <Label layoutX="37.0" layoutY="26.0" prefHeight="34.0" prefWidth="110.0" text="Tournaments">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="closeNewTournamentTabButton" layoutX="521.0" layoutY="492.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="134.0" text="Close">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <TableView fx:id="tableTableView" layoutX="19.0" layoutY="76.0" prefHeight="408.0" prefWidth="636.0">
+        <columns>
+          <TableColumn fx:id="nameColumn" prefWidth="109.60000228881836" text="Name" />
+          <TableColumn fx:id="dateColumn" prefWidth="97.5999755859375" text="Date" />
+            <TableColumn fx:id="buyinColumn" prefWidth="71.20002746582031" text="Buy-in" />
+            <TableColumn fx:id="stackColumn" prefWidth="88.0" text="Starting stack" />
+            <TableColumn fx:id="blindsColumn" prefWidth="77.5999755859375" text="Blinds (min)" />
+            <TableColumn fx:id="guaranteedColumn" prefWidth="91.20001220703125" text="Guaranteed" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
