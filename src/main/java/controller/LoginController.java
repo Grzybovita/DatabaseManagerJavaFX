@@ -74,7 +74,7 @@ public class LoginController implements Initializable {
         closeApplicationButton.setOnAction(new EventHandler<>() {
             @Override
             public void handle (ActionEvent actionEvent){
-                String text = "Czy chcesz zakończyć program?";
+                String text = "Are you sure?";
                 Alert alert = new Alert(Alert.AlertType.NONE, text, ButtonType.YES, ButtonType.NO);
                 alert.showAndWait();
                 if (alert.getResult() == ButtonType.YES) {
