@@ -122,7 +122,7 @@ public class MainMenuController {
             public void handle(ActionEvent actionEvent) {
                 try {
                     AnchorPane newPane = FXMLLoader.load(this.getClass().getResource("/EditPlayer.fxml"));
-                    if (!MainPokerManager.isNewPlayerTabVisible) {
+                    if (!MainPokerManager.isEditPlayerTabVisible) {
                         rightPane.getChildren().setAll(newPane);
                         MainPokerManager.isEditPlayerTabVisible = true;
                         MainPokerManager.isNewPlayerTabVisible = false;
