@@ -1,19 +1,21 @@
 package pokermanagerapp;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import model.Player;
 
-public class NewPlayerDAO {
-    private static final String DATABASE_URL = "jdbc:mysql://sql11.freemysqlhosting.net/sql11481898?useSSL=false";
-    private static final String DATABASE_USERNAME = "sql11481898";
-    private static final String DATABASE_PASSWORD = "pWSRq1YQbq";
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class PlayerDAO {
+    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/pokermanager?useSSL=false" + "&" + "currentSchema=pokermanager";
+    private static final String DATABASE_USERNAME = "root";
+    private static final String DATABASE_PASSWORD = "admin";
     private static final String INSERT_QUERY = "INSERT INTO player (name, lastname, nick, telnumber, email, address, " +
                                             "city, postalcode, telpush, emailpush) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_QUERY = "UPDATE player " +
                         "SET name = ?, lastname = ?, nick = ?, telnumber = ?, email = ?, address = ?, " +
                         "city = ?, postalcode = ?, telpush = ?, emailpush = ? " +
-                        "WHERE id_player = ?;";
+                        "WHERE id = ?;";
+
 
 
     public void insertRecord(String name, String lastname, String nick, String telnumber, String email, String address,
@@ -44,6 +46,63 @@ public class NewPlayerDAO {
             // print SQL exception information
             printSQLException(e);
         }
+    }
+
+    public static Player getPlayerById(int id)
+    {
+        Player player = null;
+        String query = "SELECT name, lastname, nick, telnumber, email, address, city, postalcode, telpush, emailpush FROM player WHERE id=?";
+
+        try (Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                String name = resultSet.getString("name");
+                String lastName = resultSet.getString("lastname");
+                String nick = resultSet.getString("nick");
+                String telNumber = resultSet.getString("telnumber");
+                String email = resultSet.getString("email");
+                String address = resultSet.getString("address");
+                String city = resultSet.getString("city");
+                String postalCode = resultSet.getString("postalcode");
+                boolean telPush = resultSet.getBoolean("telpush");
+                boolean emailPush = resultSet.getBoolean("emailpush");
+                player = new Player(id, name, lastName, nick, telNumber, email, address, city, postalCode, telPush, emailPush);
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return player;
+    }
+
+    public static List<Player> getAllPlayers() {
+        List<Player> players = new ArrayList<>();
+        String query = "SELECT id, name, lastname, nick, telnumber, email, address, city, postalcode, telpush, emailpush FROM player";
+
+        try (Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String lastName = resultSet.getString("lastname");
+                String nick = resultSet.getString("nick");
+                String telNumber = resultSet.getString("telnumber");
+                String email = resultSet.getString("email");
+                String address = resultSet.getString("address");
+                String city = resultSet.getString("city");
+                String postalCode = resultSet.getString("postalcode");
+                boolean telPush = resultSet.getBoolean("telpush");
+                boolean emailPush = resultSet.getBoolean("emailpush");
+                Player player = new Player(id, name, lastName, nick, telNumber, email, address, city, postalCode, telPush, emailPush);
+                players.add(player);
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return players;
     }
 
     public void updateRecord(String name, String lastname, String nick, String telnumber, String email, String address,

@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import pokermanagerapp.MainPokerManager;
-import pokermanagerapp.NewTournamentDAO;
+import pokermanagerapp.TournamentDAO;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 
@@ -84,7 +84,7 @@ public class NewTournamentController {
                 if (!(leagueChoiceBox.getValue() == null)) {
                     league = leagueChoiceBox.getValue().equals("YES");
                 }
-                NewTournamentDAO newTournamentDAO = new NewTournamentDAO();
+                TournamentDAO tournamentDAO = new TournamentDAO();
 
                 if (name.equals("")){
                     Alert alert = new Alert(Alert.AlertType.NONE, "Please enter name!", ButtonType.OK);
@@ -97,7 +97,7 @@ public class NewTournamentController {
                     alert.showAndWait();
                 } else {
                     try {
-                        newTournamentDAO.insertRecord(name, date, buyin, stack, blinds, guaranteed, league);
+                        tournamentDAO.insertRecord(name, date, buyin, stack, blinds, guaranteed, league);
                         Alert alert = new Alert(Alert.AlertType.NONE, "New tournament has been added!", ButtonType.OK);
                         alert.showAndWait();
                     } catch (SQLException throwables) {

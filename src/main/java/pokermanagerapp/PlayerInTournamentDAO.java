@@ -1,13 +1,14 @@
 package pokermanagerapp;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import model.Player;
 
-public class NewPlayerInTournamentDAO {
-    private static final String DATABASE_URL = "jdbc:mysql://sql11.freemysqlhosting.net/sql11481898?useSSL=false";
-    private static final String DATABASE_USERNAME = "sql11481898";
-    private static final String DATABASE_PASSWORD = "pWSRq1YQbq";
+import java.sql.*;
+
+public class PlayerInTournamentDAO {
+    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/pokermanager?useSSL=false" + "&" + "currentSchema=pokermanager";
+    private static final String DATABASE_USERNAME = "root";
+    private static final String DATABASE_PASSWORD = "admin";
     private static final String INSERT_QUERY = "INSERT INTO player_tournament (id_player, id_tournament) VALUES (?, ?);";
     private static final String DELETE_QUERY = "DELETE FROM player_tournament\n" +
                                                 "WHERE id_player = ? AND id_tournament = ?;";

@@ -16,7 +16,9 @@ import model.Player;
 import model.Tournament;
 import pokermanagerapp.DBService;
 import pokermanagerapp.MainPokerManager;
-import pokermanagerapp.NewPlayerInTournamentDAO;
+import pokermanagerapp.PlayerInTournamentDAO;
+import pokermanagerapp.TournamentDAO;
+
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -131,9 +133,9 @@ public class AddPlayerToTournamentController implements Initializable {
                     //if not exists, insert into database
                     if (!alreadyExists) {
                         //add new player
-                        NewPlayerInTournamentDAO.insertRecord(p.getId(), t.getId());
+                        PlayerInTournamentDAO.insertRecord(p.getId(), t.getId());
                         //refresh ListView
-                        playerList = DBService.getPlayersListInSpecTournamentFromDB(t.getId());
+                        playerList = TournamentDAO.getPlayersListInTournament(t.getId());
                         playersInTournamentTableView.setItems(playerList);
                         Alert alert = new Alert(Alert.AlertType.NONE, "New player has been added!", ButtonType.OK);
                         alert.showAndWait();
@@ -152,7 +154,7 @@ public class AddPlayerToTournamentController implements Initializable {
         tournamentListComboBox.valueProperty().addListener(new ChangeListener<Tournament>() {
             @Override
             public void changed(ObservableValue<? extends Tournament> observableValue, Tournament oldValue, Tournament newValue) {
-                playerList = DBService.getPlayersListInSpecTournamentFromDB(newValue.getId());
+                playerList = TournamentDAO.getPlayersListInTournament(newValue.getId());
                 playersInTournamentTableView.setItems(playerList);
             }
         });
@@ -168,9 +170,9 @@ public class AddPlayerToTournamentController implements Initializable {
                 if (alert.getResult() == ButtonType.YES) {
                     try {
                         //delete record from DB
-                        NewPlayerInTournamentDAO.deleteRecord(playerID, tournamentID);
+                        PlayerInTournamentDAO.deleteRecord(playerID, tournamentID);
                         //refresh ListView
-                        playerList = DBService.getPlayersListInSpecTournamentFromDB(tournamentID);
+                        playerList = TournamentDAO.getPlayersListInTournament(tournamentID);
                         playersInTournamentTableView.setItems(playerList);
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
@@ -186,10 +188,5 @@ public class AddPlayerToTournamentController implements Initializable {
                 MainPokerManager.isAddPlayerToTournamentTabVisible = false;
             }
         });
-
-
-
-
-
     }
 }

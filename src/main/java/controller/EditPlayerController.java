@@ -14,7 +14,7 @@ import javafx.util.Callback;
 import model.Player;
 import pokermanagerapp.DBService;
 import pokermanagerapp.MainPokerManager;
-import pokermanagerapp.NewPlayerDAO;
+import pokermanagerapp.PlayerDAO;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -84,10 +84,10 @@ public class EditPlayerController implements Initializable {
         selectPlayerComboBox.setItems(playerList);
 
         Callback<ListView<Player>, ListCell<Player>> playerCellFactory =
-                (new Callback<ListView<Player>, ListCell<Player>>() {
+                (new Callback<>() {
                     @Override
                     public ListCell<Player> call(ListView<Player> l) {
-                        return new ListCell<Player>() {
+                        return new ListCell<>() {
 
                             @Override
                             protected void updateItem(Player item, boolean empty) {
@@ -122,9 +122,7 @@ public class EditPlayerController implements Initializable {
                 if (!player.isEmailpush()){
                     emailNotificationsNoButton.setSelected(true);
                 }
-
             }
-
         });
 
 
@@ -164,7 +162,7 @@ public class EditPlayerController implements Initializable {
                 String postalcode = postalCodeTextArea.getCharacters().toString();
                 boolean telpush = telNotificationsYesButton.isSelected();
                 boolean emailpush = emailNotificationsYesButton.isSelected();
-                NewPlayerDAO newPlayerDAO = new NewPlayerDAO();
+                PlayerDAO playerDAO = new PlayerDAO();
 
                 if (name.equals("")){
                     Alert alert = new Alert(Alert.AlertType.NONE, "Please enter name!", ButtonType.OK);
@@ -177,7 +175,7 @@ public class EditPlayerController implements Initializable {
                     alert.showAndWait();
                 } else {
                     try {
-                        newPlayerDAO.updateRecord(name, lastname, nick, telnumber, email, address, city, postalcode, telpush, emailpush, id);
+                        playerDAO.updateRecord(name, lastname, nick, telnumber, email, address, city, postalcode, telpush, emailpush, id);
                         Alert alert = new Alert(Alert.AlertType.NONE, "Player data has been updated!", ButtonType.OK);
                         alert.showAndWait();
                     } catch (SQLException throwables) {

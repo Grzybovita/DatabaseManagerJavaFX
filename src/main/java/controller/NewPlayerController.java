@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import pokermanagerapp.MainPokerManager;
-import pokermanagerapp.NewPlayerDAO;
+import pokermanagerapp.PlayerDAO;
 import java.sql.SQLException;
 
 public class NewPlayerController {
@@ -86,7 +86,7 @@ public class NewPlayerController {
                 String postalcode = postalCodeTextArea.getCharacters().toString();
                 boolean telpush = telNotificationsYesButton.isSelected();
                 boolean emailpush = emailNotificationsYesButton.isSelected();
-                NewPlayerDAO newPlayerDAO = new NewPlayerDAO();
+                PlayerDAO playerDAO = new PlayerDAO();
 
                 if (name.equals("")){
                     Alert alert = new Alert(Alert.AlertType.NONE, "Please enter name!", ButtonType.OK);
@@ -99,7 +99,7 @@ public class NewPlayerController {
                     alert.showAndWait();
                 } else {
                     try {
-                        newPlayerDAO.insertRecord(name, lastname, nick, telnumber, email, address, city, postalcode, telpush, emailpush);
+                        playerDAO.insertRecord(name, lastname, nick, telnumber, email, address, city, postalcode, telpush, emailpush);
                         Alert alert = new Alert(Alert.AlertType.NONE, "New player has been added!", ButtonType.OK);
                         alert.showAndWait();
                     } catch (SQLException throwables) {
