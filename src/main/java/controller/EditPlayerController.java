@@ -113,9 +113,9 @@ public class EditPlayerController implements Initializable {
                 nickTextArea.setText(player.getNick());
                 telTextArea.setText(player.getTelnumber());
                 emailTextArea.setText(player.getEmail());
-                addressTextArea.setText(player.getAddress());
-                cityTextArea.setText(player.getCity());
-                postalCodeTextArea.setText(player.getPostalcode());
+                addressTextArea.setText(player.getAddress().getAddress());
+                cityTextArea.setText(player.getAddress().getCity());
+                postalCodeTextArea.setText(player.getAddress().getPostalcode());
                 if (!player.isTelpush()){
                     telNotificationsNoButton.setSelected(true);
                 }

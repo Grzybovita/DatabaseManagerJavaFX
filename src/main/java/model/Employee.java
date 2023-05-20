@@ -15,7 +15,7 @@ public class Employee extends Person {
   }
 
   public Employee(int id, String name, String lastname, String telnumber, String email,
-                String address, String position) {
+                Address address, String position) {
     this.setId(id);
     this.setName(name);
     this.setLastname(lastname);

@@ -1,6 +1,7 @@
 package pokermanagerapp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.Address;
 import model.Player;
 import model.Tournament;
 
@@ -53,11 +54,16 @@ public class TournamentDAO {
                     "INNER JOIN player_tournament pt ON p.id = pt.id_player " +
                     "WHERE pt.id_tournament = %s".formatted(tID));
             while (rs.next()) {
-                resultList.add(new Player(rs.getInt("id"),rs.getString("name"),
-                        rs.getString("lastname"), rs.getString("nick"),
-                        rs.getString("telnumber"), rs.getString("email"),
-                        rs.getString("address"),  rs.getString("city"),
-                        rs.getString("postalcode"), rs.getBoolean("telpush"),
+                resultList.add(new Player(rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("lastname"),
+                        rs.getString("nick"),
+                        rs.getString("telnumber"),
+                        rs.getString("email"),
+                        new Address(rs.getString("address"),
+                                rs.getString("city"),
+                                rs.getString("postalcode")),
+                        rs.getBoolean("telpush"),
                         rs.getBoolean("emailpush")));
             }
             connection.close();

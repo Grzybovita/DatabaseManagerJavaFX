@@ -10,9 +10,7 @@ public abstract class Person {
   private String lastname;
   private String telnumber;
   private String email;
-  private String address;
-  private String city;
-  private String postalcode;
+  private Address address;
   private ClubStatus clubStatus;
 
   public int getId() {
@@ -55,28 +53,12 @@ public abstract class Person {
     this.email = email;
   }
 
-  public String getAddress() {
+  public Address getAddress() {
     return address;
   }
 
-  public void setAddress(String address) {
+  public void setAddress(Address address) {
     this.address = address;
-  }
-
-  public String getCity() {
-    return city;
-  }
-
-  public void setCity(String city) {
-    this.city = city;
-  }
-
-  public String getPostalcode() {
-    return postalcode;
-  }
-
-  public void setPostalcode(String postalcode) {
-    this.postalcode = postalcode;
   }
 
   public static int getCount()

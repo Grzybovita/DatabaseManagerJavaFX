@@ -1,4 +1,5 @@
 package pokermanagerapp;
+import model.Address;
 import model.Player;
 
 import java.sql.*;
@@ -68,7 +69,8 @@ public class PlayerDAO {
                 String postalCode = resultSet.getString("postalcode");
                 boolean telPush = resultSet.getBoolean("telpush");
                 boolean emailPush = resultSet.getBoolean("emailpush");
-                player = new Player(id, name, lastName, nick, telNumber, email, address, city, postalCode, telPush, emailPush);
+                Address playerAddress = new Address(address, city, postalCode);
+                player = new Player(id, name, lastName, nick, telNumber, email, playerAddress, telPush, emailPush);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -96,7 +98,8 @@ public class PlayerDAO {
                 String postalCode = resultSet.getString("postalcode");
                 boolean telPush = resultSet.getBoolean("telpush");
                 boolean emailPush = resultSet.getBoolean("emailpush");
-                Player player = new Player(id, name, lastName, nick, telNumber, email, address, city, postalCode, telPush, emailPush);
+                Address playerAddress = new Address(address, city, postalCode);
+                Player player = new Player(id, name, lastName, nick, telNumber, email, playerAddress, telPush, emailPush);
                 players.add(player);
             }
         } catch (SQLException e) {

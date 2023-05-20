@@ -17,7 +17,7 @@ public class Tournament {
     private int blinds;
     private int guaranteed;
     private List<Player> playerList;
-    private boolean isOlderThanOneYear = isOlderThanXYears(1);
+    //private boolean isOlderThanOneYear = isOlderThanXYears(1);
     public Tournament(int id, String name, String date, int buyin, int stack, int blinds, int guaranteed) {
         this.setId(id);
         if (name != null)
@@ -108,7 +108,7 @@ public class Tournament {
         isOlderThanOneYear = olderThanOneYear;
     }*/
 
-    public boolean isOlderThanXYears(int years)
+    /*public boolean isOlderThanXYears(int years)
     {
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
@@ -126,13 +126,13 @@ public class Tournament {
             System.out.println("The difference between the dates is less than or equal to 1 year.");
             return false;
         }
-    }
+    }*/
 
-    public boolean isOlderThanXYears()
+    /*public boolean isOlderThanXYears()
     {
         System.out.println("No parameter entered - checking if older than default (1 year)");
         return isOlderThanXYears(1);
-    }
+    }*/
 
     @Override
     public String toString() {

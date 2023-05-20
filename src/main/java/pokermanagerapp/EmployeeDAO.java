@@ -1,5 +1,6 @@
 package pokermanagerapp;
 
+import model.Address;
 import model.Employee;
 
 import java.sql.*;
@@ -32,8 +33,11 @@ public class EmployeeDAO {
         String telNumber = resultSet.getString("telnumber");
         String email = resultSet.getString("email");
         String address = resultSet.getString("address");
+        String city = resultSet.getString("city");
+        String postalCode = resultSet.getString("postalcode");
         String position = resultSet.getString("position");
-        employee = new Employee(id, name, lastName, telNumber, email, address, position);
+        Address employeeAddress = new Address(address, city, postalCode);
+        employee = new Employee(id, name, lastName, telNumber, email, employeeAddress, position);
       }
     } catch (SQLException e) {
       printSQLException(e);
@@ -56,8 +60,11 @@ public class EmployeeDAO {
         String telNumber = resultSet.getString("telnumber");
         String email = resultSet.getString("email");
         String address = resultSet.getString("address");
+        String city = resultSet.getString("city");
+        String postalCode = resultSet.getString("postalcode");
         String position = resultSet.getString("position");
-        Employee employee = new Employee(id, name, lastName, telNumber, email, address, position);
+        Address employeeAddress = new Address(address, city, postalCode);
+        Employee employee = new Employee(id, name, lastName, telNumber, email, employeeAddress, position);
         employeeList.add(employee);
       }
     } catch (SQLException e) {

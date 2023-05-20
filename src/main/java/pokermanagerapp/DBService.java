@@ -2,6 +2,7 @@ package pokermanagerapp;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.Address;
 import model.Player;
 import model.Tournament;
 import java.sql.Connection;
@@ -36,11 +37,16 @@ public class DBService {
             Connection connection = DBConnector.getConnection();
             ResultSet rs = connection.createStatement().executeQuery("SELECT * FROM player");
             while (rs.next()) {
-                resultList.add(new Player(rs.getInt("id"),rs.getString("name"),
-                        rs.getString("lastname"), rs.getString("nick"),
-                        rs.getString("telnumber"), rs.getString("email"),
-                        rs.getString("address"),  rs.getString("city"),
-                        rs.getString("postalcode"), rs.getBoolean("telpush"),
+                resultList.add(new Player(rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("lastname"),
+                        rs.getString("nick"),
+                        rs.getString("telnumber"),
+                        rs.getString("email"),
+                        new Address(rs.getString("address"),
+                                rs.getString("city"),
+                                rs.getString("postalcode")),
+                        rs.getBoolean("telpush"),
                         rs.getBoolean("emailpush")));
             }
             connection.close();
