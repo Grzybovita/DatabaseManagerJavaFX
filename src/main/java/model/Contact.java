@@ -3,6 +3,7 @@ package model;
 public class Contact {
   private String value;
 
+
   public Contact(String value) {
     this.value = value;
   }

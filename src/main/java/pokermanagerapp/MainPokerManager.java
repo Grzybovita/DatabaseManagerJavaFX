@@ -41,26 +41,31 @@ public class MainPokerManager extends Application {
         //"zwykla" z frontendu, np dodawanie/usuwanie gracza z turnieju
 
         //asocjacja z atrybutem - miejsce gracza w turnieju
-        PlayerInTournamentDAO.updatePlace(5, 1, 1);
+        //PlayerInTournamentDAO.insertRecord(1, 1, 5);
+        //PlayerInTournamentDAO.updatePlace(5, 1, 1);
 
         //asocjacja kwalifikowana - dodawanie z kwalifikatorem i usuwanie
-        Player player = PlayerDAO.getPlayerById(1);
-        Contact phoneContact = new Contact("123456789");
-        player.addContact("phone", phoneContact);
+        //Player player = PlayerDAO.getPlayerById(1);
+        //Contact phoneContact = new Contact("123456789");
+        //player.addContact("phone", phoneContact);
 
-        Contact emailContact = new Contact("john.doe@example.com");
-        player.addContact("email", emailContact);
+        //Contact emailContact = new Contact("john.doe@example.com");
+        //player.addContact("email", emailContact);
 
         // Pobieranie numeru telefonu gracza
-        Contact phone = player.getContact("phone");
-        System.out.println("Numer telefonu: " + phone.getValue());
+        //Contact phone = player.getContact("phone");
+        //System.out.println("Numer telefonu: " + phone.getValue());
 
         // Pobieranie adresu email gracza
-        Contact email = player.getContact("email");
-        System.out.println("Adres email: " + email.getValue());
+        //Contact email = player.getContact("email");
+        //System.out.println("Adres email: " + email.getValue());
 
-        player.removeContact("email");
-        System.out.println(player.getContact("email"));
+        // Usuwanie adresu email gracza
+        //player.removeContact("email");
+        //System.out.println(player.getContact("email"));
+
+        //kompozycja - Address w klasie Player - istnieje tylko dla konkretnego playera
+
 
 
 

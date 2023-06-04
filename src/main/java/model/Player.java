@@ -5,7 +5,7 @@ import pokermanagerapp.PlayerDAO;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Player extends Person {
+public class Player extends Person implements Removable {
 
     private String nick;
     private boolean telpush;
@@ -74,12 +74,19 @@ public class Player extends Person {
 
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Player{" +
                 "nick='" + nick + '\'' +
                 ", telpush=" + telpush +
                 ", emailpush=" + emailpush +
                 ", clubStatus=" + clubStatus +
                 '}';
+    }
+
+    @Override
+    public void removable()
+    {
+
     }
 }

@@ -9,6 +9,13 @@ public class Address {
   }
 
   public Address(String address, String city, String postalcode) {
+    /*if (player != null)
+    {
+      //TODO throw exception?
+      //tworzenie adresu TYLKO dla playera, nie inaczej
+      //delete player - delete all addresses
+      //kwalifikowana - dokonczyc polaczenia zwrotne
+    }*/
     this.address = address;
     this.city = city;
     this.postalcode = postalcode;
